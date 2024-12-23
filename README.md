@@ -1,46 +1,138 @@
-# Getting Started with Create React App
+# Employee Polls Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+The **Employee Polls** application is an internal tool designed for company employees to improve collaboration and transparency. Employees can create polls with two proposed solutions, vote on polls, and see which solutions receive the most votes. Additionally, the application features a leaderboard to encourage engagement by ranking employees based on their participation.
 
-In the project directory, you can run:
+The HR department incentivizes usage by awarding prizes each quarter to the top participants who create and answer the most polls.
 
-### `yarn start`
+### Key Features:
+- Employees can create polls with the format: "Would you rather [option A] or [option B]?"
+- Employees can view polls they have answered or not answered.
+- Results of polls, including the number and percentage of votes for each option, are displayed.
+- Leaderboard ranking employees by the number of polls created and answered.
+- Secure login functionality.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Why This Project?
+This project reinforces your understanding of **React** and **Redux** while offering creative flexibility to add functionality. It helps you:
+- Improve state predictability.
+- Define clear rules for interacting with the Redux store.
+- Differentiate between state managed by Redux and React components.
+- Write unit tests to ensure code reliability.
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `yarn build`
+### Development Options:
+1. **Workspace:** Develop using your preconfigured Workspace in the Udacity Classroom.
+2. **Local Development:** Clone the repository and develop on your local machine.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Starter Code:
+The starter code includes a `_DATA.js` file that acts as a mock database. Key tasks:
+- Update the `avatarURL` field for each user to include an avatar.
+- Build the React/Redux front end using the provided starter code.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## App Functionality
 
-### `yarn eject`
+### Authentication:
+- Users can log in by selecting a user from a dropdown menu or through account creation.
+- Information about the logged-in user is displayed.
+- Unauthorized navigation redirects to the login page.
+- Users can log out and log back in.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Poll Management:
+- **Homepage:**
+    - Displays answered and unanswered polls, sorted by creation date (most recent first).
+    - Unanswered polls are shown by default.
+- **Poll Details:**
+    - Available at `/questions/:id` route.
+    - Includes the question, creator's avatar, and voting options.
+    - Answered polls show vote counts and percentages for each option.
+    - Users can vote only once per poll, and votes cannot be changed.
+- **Create Poll:**
+    - Available at `/new-polls` route.
+    - Allows users to create a new poll with two options.
+    - After submission, redirects to the homepage and categorizes the new poll appropriately.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Leaderboard:
+- Available at `/leaderboard` route.
+- Displays:
+    - User’s name and avatar.
+    - Number of polls created.
+    - Number of polls answered.
+- Ranks users based on the total of polls created and answered (highest first).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Navigation:
+- Accessible pages include the leaderboard, poll details, and poll creation form.
+- Navigation can be done via links or direct URL entry.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Error Handling:
+- Displays a 404 page for invalid poll URLs.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## App Architecture
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### State Management:
+- Most application state is managed by **Redux**.
+- State relevant to specific components can reside in **React state**.
+- All updates are triggered by dispatching action creators.
+
+### Best Practices:
+- Avoid direct API calls in component lifecycle methods.
+- Organize code into reusable, modular components.
+
+---
+
+## Unit Testing
+
+### Required Tests:
+1. **_DATA.js Tests:**
+    - Test `_saveQuestion` with valid and invalid data.
+    - Test `_saveQuestionAnswer` with valid and invalid data.
+2. **Snapshot Test:**
+    - Test UI consistency for at least one component.
+3. **DOM Test:**
+    - Use `fireEvent` to simulate user interactions and verify UI updates.
+
+### Additional Suggestions:
+- Verify login page functionality (fields and error handling).
+- Validate leaderboard displays correct rankings.
+- Ensure poll results display accurate percentages.
+- Confirm navigation bar contains all expected links.
+
+---
+
+## Development Tips
+- Follow the template and planning stages discussed in the Udacity Chirper Project.
+- Write unit tests during development to catch bugs early.
+- Ensure your Redux store is the single source of truth.
+
+---
+
+## How to Run the Project
+
+1. Clone the repository.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+4. Run tests:
+   ```bash
+   npm test
+   ```
+
+---
+
+## Conclusion
+The **Employee Polls** project not only enhances technical skills in **React** and **Redux** but also encourages creative problem-solving and effective state management. With robust functionality and thorough testing, this application will foster greater collaboration and engagement within your organization.
+

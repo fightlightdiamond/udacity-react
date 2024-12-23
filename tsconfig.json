@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "paths": {
+      "react-router-dom": ["node_modules/react-router-dom"]
+    },
     "lib": [
       "dom",
       "dom.iterable",
