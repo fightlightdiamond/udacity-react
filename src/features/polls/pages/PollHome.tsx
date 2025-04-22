@@ -14,6 +14,9 @@ const PollHome: React.FC = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        // Mở một cửa sổ mới (ví dụ: trang nhận dữ liệu)
+        window.postMessage({ key: 123}, '*')
+
         if(authState) dispatch(getUserVoteStatistic(authState.id))
     }, [authState, dispatch]);
 

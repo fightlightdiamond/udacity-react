@@ -5,7 +5,6 @@ import {selectPollStatistics} from "../store/pollSlice";
 import {useAppDispatch} from "../../../common/hooks";
 import { getUserStatistics} from "../store/pollsAPI";
 
-
 const Leaderboard: React.FC = () => {
     const statistics = useTypedSelector(selectPollStatistics);
 

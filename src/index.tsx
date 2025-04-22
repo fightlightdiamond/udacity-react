@@ -20,6 +20,8 @@ import PollHome from "./features/polls/pages/PollHome";
 import Leaderboard from "./features/polls/pages/Leaderboard";
 import NewPoll from "./features/polls/pages/NewPoll";
 import Protected from "./common/components/Protected";
+import ChildPage from "./ChildPage";
+import ParentPage from "./ParentPage";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -31,6 +33,8 @@ root.render(
                 <Routes>
                     <Route element={<Protected><MasterLayout/></Protected>}>
                         {/*<Route index path="/" element={<App />} />*/}
+                        <Route path="/p" element={<ParentPage />} />
+                        <Route path="/child" element={<ChildPage />} />
                         <Route element={<BookLayout/>}>
                             <Route path="/book" element={<BookHome/>}/>
                             <Route path="/search" element={<BookSearch/>}/>
@@ -59,3 +63,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
