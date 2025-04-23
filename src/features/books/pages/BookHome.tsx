@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {Button} from "flowbite-react";
 import {HiDocumentSearch } from "react-icons/hi";
 import {Link} from "react-router";
-import {BookShelf} from "../compoents/BookShelf";
+import {BookShelf} from "../components/BookShelf";
 import {IBook} from "../types";
 import {BookContext} from "../context";
 

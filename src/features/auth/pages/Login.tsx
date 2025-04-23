@@ -8,15 +8,28 @@ import {useTypedSelector} from "../../../app/stores";
 import {selectAuth, selectError, selectStatus} from "../store/authSlice";
 import {login} from "../store/authAPI";
 import {useLocation, useNavigate} from "react-router";
+import {Link} from "react-router-dom";
+import PasswordInput from "../../../common/components/ui-controls/PasswordInput";
+import {ERoles} from "../mock/_DATA_";
+import {SubmitHandler, useForm} from "react-hook-form";
+
+type Inputs = {
+    email: string
+    password: string
+}
 
 export function Login() {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<Inputs>()
+
     const dispatch = useAppDispatch()
     const status = useTypedSelector(selectStatus);
     const error = useTypedSelector(selectError);
     const { state } = useLocation();
-
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
 
     let navigate = useNavigate();
     const auth = useTypedSelector(selectAuth);
@@ -24,32 +37,44 @@ export function Login() {
         if(auth) navigate(state?.path || "/");
     }, [auth, navigate, state?.path]);
 
-    const onHandleLogin = (e: React.FormEvent) => {
-        e.preventDefault();
-        dispatch(login({email, password}))
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        dispatch(login(data))
     }
 
-
     return (
-        <Card className="max-w-sm">
-            <h1 className='text-center text-2xl text-bold'>Employee Polls</h1>
+        <Card className="max-w-md">
+            <h1 className='text-center text-2xl text-bold'>Login</h1>
+            <div className={'flex gap-1'}>
+                <p>Are you a new member?</p>
+                <Link className={'text-blue-400'} to={'/register'}>Sign Up Here</Link>
+            </div>
+
             <img src="/poll/spinx.png" alt=""/>
             <ShowStatus status={status} error={error} />
-            <form className="flex flex-col gap-4" onSubmit={onHandleLogin}>
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <div className="mb-2 block">
                         <Label htmlFor="email1" value="Your email"/>
                     </div>
-                    <TextInput onChange={(e) => setEmail(e.target.value)} id="email1"  type="email" placeholder="test@gmail.com" required/>
+                    <TextInput
+                        {...register("email")}
+                        id="email1" type="email" placeholder="test@gmail.com"/>
                 </div>
                 <div>
                     <div className="mb-2 block">
                         <Label htmlFor="password1" value="Your password"/>
                     </div>
-                    <TextInput onChange={(e) => setPassword(e.target.value)} id="password1" type="password" required/>
+                    <PasswordInput
+                        register={register("password", {required: "Password is required"})}
+                        error={errors.password?.message}
+                    />
                 </div>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Login</Button>
+                <Button color={'red'} type="submit">Reset</Button>
             </form>
+            <div className={'text-center'}>
+                <Link to={'/forgot-password'}>Forgot Password?</Link>
+            </div>
         </Card>
     );
 }

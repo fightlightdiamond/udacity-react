@@ -2,12 +2,30 @@ import { faker } from '@faker-js/faker';
 import {TUser} from "../../../common/abstracts/types";
 import {TLogin} from "../types";
 
+export enum ERoles {
+    Doctor,
+    Patient
+}
+
+export const ROLES = [
+    {
+        id: ERoles.Doctor,
+        name: 'Doctor'
+    },
+    {
+        id: ERoles.Patient,
+        name: 'Patient'
+    }
+]
+
+
 export const usersFake: TUser[] = Array.from({length: 8})
     .map((_, index) => {
         return {
             id: index,
             name: faker.person.fullName(),
             email: faker.internet.email(),
+            phone: faker.phone.number(),
             password: '123',
             avatar: faker.image.avatar(),
         }

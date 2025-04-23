@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import {Button, TextInput} from "flowbite-react";
 import { HiArrowLeft } from "react-icons/hi";
 import {Link} from "react-router";
-import {BookItem} from "../compoents/BookItem";
+import {BookItem} from "../components/BookItem";
 import {BookContext} from "../context";
 
 const BookSearch: React.FC = () => {
