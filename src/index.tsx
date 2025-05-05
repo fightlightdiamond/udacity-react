@@ -22,6 +22,9 @@ import NewPoll from "./features/polls/pages/NewPoll";
 import Protected from "./common/components/Protected";
 import ChildPage from "./ChildPage";
 import ParentPage from "./ParentPage";
+import Home from "./features/home/pages/Home";
+import BaseLayout from "./common/components/layout/BaseLayout";
+import BestServices from "./features/home/pages/BestServices";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -31,8 +34,11 @@ root.render(
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
+                    <Route element={<Protected><BaseLayout/></Protected>}>
+                        <Route index path="/" element={<Home />} />
+                        <Route index path="/best-services" element={<BestServices />} />
+                    </Route>
                     <Route element={<Protected><MasterLayout/></Protected>}>
-                        {/*<Route index path="/" element={<App />} />*/}
                         <Route path="/p" element={<ParentPage />} />
                         <Route path="/child" element={<ChildPage />} />
                         <Route element={<BookLayout/>}>
@@ -40,7 +46,7 @@ root.render(
                             <Route path="/search" element={<BookSearch/>}/>
                         </Route>
                         <Route element={<PollLayout/>}>
-                            <Route index path="/" element={<PollHome />} />
+                            <Route index path="/poll-home" element={<PollHome />} />
                             <Route path="leaderboards" element={<Leaderboard />} />
                             <Route path="new-polls" element={<NewPoll />} />
                             <Route path="questions/:id" element={<QuestionDetail />} />

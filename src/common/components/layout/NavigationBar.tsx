@@ -4,7 +4,7 @@ import {Avatar, Button, Dropdown, MegaMenu, Navbar} from 'flowbite-react';
 import {useTypedSelector} from "../../../app/stores";
 import {logout, selectAuth} from "../../../features/auth/store/authSlice";
 import {useAppDispatch} from "../../hooks";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import React from "react";
 
 export default function NavigationBar() {
@@ -54,8 +54,12 @@ export default function NavigationBar() {
                                     <Dropdown.Item onClick={() => onLogout()}>Sign out</Dropdown.Item>
                                 </Dropdown> :
                                 <div className={'flex gap-1'}>
-                                    <Button pill={true} outline={true}>Sign Up</Button>
-                                    <Button pill={true} outline={true}>Login</Button>
+                                    <Link to={'/login'}>
+                                        <Button pill={true} outline={true}>Sign Up</Button>
+                                    </Link>
+                                    <Link to={'/register'}>
+                                        <Button pill={true} outline={true}>Login</Button>
+                                    </Link>
                                 </div>
                         }
 
