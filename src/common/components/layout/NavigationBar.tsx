@@ -34,7 +34,7 @@ export default function NavigationBar() {
                         <Navbar.Link active={location.pathname === '/new-polls'}
                                      onClick={() => navigate('/new-polls')}>Healthy Blog</Navbar.Link>
                         <Navbar.Link active={location.pathname === '/new-polls'}
-                                     onClick={() => navigate('/new-polls')}>Reviews</Navbar.Link>
+                                     onClick={() => navigate('/review')}>Reviews</Navbar.Link>
                     </Navbar.Collapse>
                     <Navbar.Toggle/>
                     <div className="flex">
@@ -51,6 +51,8 @@ export default function NavigationBar() {
                                         <span className="block text-sm">{auth?.name}</span>
                                         <span className="block truncate text-sm font-medium">{auth?.email}</span>
                                     </Dropdown.Header>
+                                    <Dropdown.Item onClick={() => onLogout()}>Your Profile</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => onLogout()}>Your Reports</Dropdown.Item>
                                     <Dropdown.Item onClick={() => onLogout()}>Sign out</Dropdown.Item>
                                 </Dropdown> :
                                 <div className={'flex gap-1'}>

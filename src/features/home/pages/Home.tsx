@@ -9,10 +9,6 @@ const Home: React.FC = () => {
     const authState = useTypedSelector(selectAuth);
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        window.postMessage({ key: 123}, '*')
-    }, [authState, dispatch]);
-
     return <section className={'container mx-auto'}>
         <div className={'flex flex-col items-center justify-center'}>
             <h1 className={'font-bold text-3xl'}>Your Health</h1>

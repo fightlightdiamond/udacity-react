@@ -25,6 +25,9 @@ import ParentPage from "./ParentPage";
 import Home from "./features/home/pages/Home";
 import BaseLayout from "./common/components/layout/BaseLayout";
 import BestServices from "./features/home/pages/BestServices";
+import FindDoctor from "./features/home/pages/FindDoctor";
+import Review from "./features/reviews/pages/Review";
+import ViewReport from "./features/reviews/pages/ViewReport";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -37,6 +40,9 @@ root.render(
                     <Route element={<Protected><BaseLayout/></Protected>}>
                         <Route index path="/" element={<Home />} />
                         <Route index path="/best-services" element={<BestServices />} />
+                        <Route index path="/find-doctor" element={<FindDoctor />} />
+                        <Route index path="/review" element={<Review />} />
+                        <Route index path="/view-report" element={<ViewReport />} />
                     </Route>
                     <Route element={<Protected><MasterLayout/></Protected>}>
                         <Route path="/p" element={<ParentPage />} />
